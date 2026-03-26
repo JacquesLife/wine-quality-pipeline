@@ -54,3 +54,4 @@ df_enriched_renamed = df_enriched.toDF(*cols_renamed)
 df_enriched_renamed.write.format("delta").mode("overwrite").saveAsTable("wine_enriched")
 
 display(spark.sql("SELECT * FROM wine_enriched LIMIT 5"))
+# updated
