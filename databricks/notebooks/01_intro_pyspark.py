@@ -55,3 +55,4 @@ df_enriched_renamed.write.format("delta").mode("overwrite").saveAsTable("wine_en
 
 display(spark.sql("SELECT * FROM wine_enriched LIMIT 5"))
 # updated
+# trigger
