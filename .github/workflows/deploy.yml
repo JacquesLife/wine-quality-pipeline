@@ -1,0 +1,36 @@
+name: Deploy to Databricks
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "databricks/notebooks/**"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Databricks CLI
+        run: pip install databricks-cli
+
+      - name: Deploy notebook to Databricks
+        env:
+          DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+        run: |
+          databricks workspace import \
+            --language PYTHON \
+            --format SOURCE \
+            --overwrite \
+            databricks/notebooks/01_intro_pyspark.py \
+            /Users/dupjac3@gmail.com/ci-managed/01_intro_pyspark
