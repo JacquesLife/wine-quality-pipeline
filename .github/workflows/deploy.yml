@@ -28,6 +28,7 @@ jobs:
           DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
         run: |
+          databricks workspace mkdirs /Users/dupjac3@gmail.com/ci-managed
           databricks workspace import \
             --language PYTHON \
             --format SOURCE \
